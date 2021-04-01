@@ -11,5 +11,5 @@ class User < ApplicationRecord
   validates :firstname,          presence: { with: /\A[ぁ-んァ-ン一-龥々]+\z/ }
   validates :lastname_kana,      presence: { with: /\A[ァ-ヶー－]+\z/ }
   validates :firstname_kana,     presence: { with: /\A[ァ-ヶー－]+\z/ }
-  validates :date,               presence: true
+  validates :birthday,               presence: true
 end
