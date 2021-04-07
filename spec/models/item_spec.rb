@@ -18,9 +18,9 @@ describe Item do
     context '商品の出品ができない時' do
 
       it "商品画像がない場合は出品できないこと" do
-        @item.image = []
+        @item.image = nil
         @item.valid?
-        expect(@item.errors[:images]).to include()
+        expect(@item.errors[:image]).to include()
       end
 
       it "nameがない場合は登録できないこと" do
@@ -78,6 +78,21 @@ describe Item do
         @item.valid?
         expect(@item.errors.full_messages).to include()
       end
+
+      it "priceが¥300~¥9,999,999の範囲外では登録できないこと" do
+        @item.user = FactoryBot.create(:user)
+        @item.price = "299"
+        @item.valid?
+        expect(@item.errors.full_messages).to include()
+      end
+
+      it "priceが全角では登録できないこと" do
+        @item.user = FactoryBot.create(:user)
+        @item.price = "１０００"
+        @item.valid?
+        expect(@item.errors.full_messages).to include()
+      end
+
 
     end
   end
