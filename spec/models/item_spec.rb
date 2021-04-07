@@ -8,92 +8,88 @@ describe Item do
     end
 
     context '商品の出品ができる時' do
-
-      it "必要な情報を適切に入力すると、商品情報がデータベースに保存されること" do
+      it '必要な情報を適切に入力すると、商品情報がデータベースに保存されること' do
         @item.user = FactoryBot.create(:user)
         expect(@item).to be_valid
       end
     end
 
     context '商品の出品ができない時' do
-
-      it "商品画像がない場合は出品できないこと" do
+      it '商品画像がない場合は出品できないこと' do
         @item.image = nil
         @item.valid?
-        expect(@item.errors[:image]).to include()
+        expect(@item.errors[:image]).to include
       end
 
-      it "nameがない場合は登録できないこと" do
+      it 'nameがない場合は登録できないこと' do
         @item.user = FactoryBot.create(:user)
         @item.name = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Name can't be blank")
       end
 
-      it "infoがない場合は登録できないこと" do
+      it 'infoがない場合は登録できないこと' do
         @item.user = FactoryBot.create(:user)
         @item.info = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Info can't be blank")
       end
 
-      it "category_idがない場合は登録できないこと" do
+      it 'category_idがない場合は登録できないこと' do
         @item.user = FactoryBot.create(:user)
         @item.category_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include()
+        expect(@item.errors.full_messages).to include
       end
 
-      it "status_idがない場合は登録できないこと" do
+      it 'status_idがない場合は登録できないこと' do
         @item.user = FactoryBot.create(:user)
         @item.status_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include()
+        expect(@item.errors.full_messages).to include
       end
 
-      it "shipping_fee_idがない場合は登録できないこと" do
+      it 'shipping_fee_idがない場合は登録できないこと' do
         @item.user = FactoryBot.create(:user)
         @item.shipping_fee_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include()
+        expect(@item.errors.full_messages).to include
       end
 
-      it "prefecture_idがない場合は登録できないこと" do
+      it 'prefecture_idがない場合は登録できないこと' do
         @item.user = FactoryBot.create(:user)
         @item.prefecture_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include()
+        expect(@item.errors.full_messages).to include
       end
 
-      it "delivery_schedule_idがない場合は登録できないこと" do
+      it 'delivery_schedule_idがない場合は登録できないこと' do
         @item.user = FactoryBot.create(:user)
         @item.delivery_schedule_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include()
+        expect(@item.errors.full_messages).to include
       end
 
-      it "priceがない場合は登録できないこと" do
+      it 'priceがない場合は登録できないこと' do
         @item.user = FactoryBot.create(:user)
         @item.price = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include()
+        expect(@item.errors.full_messages).to include
       end
 
-      it "priceが¥300~¥9,999,999の範囲外では登録できないこと" do
+      it 'priceが¥300~¥9,999,999の範囲外では登録できないこと' do
         @item.user = FactoryBot.create(:user)
-        @item.price = "299"
+        @item.price = '299'
         @item.valid?
-        expect(@item.errors.full_messages).to include()
+        expect(@item.errors.full_messages).to include
       end
 
-      it "priceが全角では登録できないこと" do
+      it 'priceが全角では登録できないこと' do
         @item.user = FactoryBot.create(:user)
-        @item.price = "１０００"
+        @item.price = '１０００'
         @item.valid?
-        expect(@item.errors.full_messages).to include()
+        expect(@item.errors.full_messages).to include
       end
-
-
     end
   end
 end

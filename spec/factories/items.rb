@@ -8,6 +8,5 @@ FactoryBot.define do
     prefecture_id        { '2' }
     delivery_schedule_id { '2' }
     price                { '1000' }
-
   end
 end
