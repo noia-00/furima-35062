@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :create]
   before_action :set_item
+  before_action :moving_root_path, only: [:index, :create]
 
   def index
     @purchase_address = PurchaseAddress.new
@@ -36,4 +38,9 @@ class OrdersController < ApplicationController
       currency: 'jpy'
     )
   end
+
+  def moving_root_path
+    redirect_to root_path if current_user.id == @item.user_id || @item.purchase.present?
+  end
+
 end
